@@ -1,4 +1,9 @@
-<div class="w-full dark:bg-grey-800 flex flex-col mx-auto my-auto items-center rounded-lg pt-10 pb-8">
+<div
+  class="w-full dark:bg-grey-800 bg-customWhite flex flex-col mx-auto my-auto items-center rounded-lg pt-10 pb-8 relative dark:shadow-lg shadow-none">
+  <div class="absolute top-4 right-4">
+    <app-theme-switcher-btn></app-theme-switcher-btn>
+  </div>
+
   <div class="profile-image max-w-24  overflow-hidden ">
     @if (userData.picture) {
     <div class="relative w-full aspect-square">
@@ -18,7 +23,7 @@
 
   <div class="user-name mt-8 flex flex-col justify-center">
     @if(userData && userData.name ){
-    <h1 class="text-customWhite leading-tight text-2xl font-inter text-center ">
+    <h1 class="dark:text-customWhite text-grey-900 leading-tight text-2xl font-inter text-center ">
       {{userData.name.first}}
       {{userData.name.last}}</h1>
     } @else {
@@ -32,7 +37,8 @@
     }
 
 
-    <p class="text-customWhite/75 mt-5">"Front-end developer and avid reader."</p>
+    <p class="dark:text-customWhite/75    text-grey-900/75 mt-5">"Front-end developer and avid
+      reader."</p>
   </div>
 
 

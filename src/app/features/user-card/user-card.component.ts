@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
 import { UserResponse } from '../../data/models/user.model';
 import { SocialBtnComponent } from '../../shared/components/social-btn/social-btn.component';
+import { ThemeSwitcherBtnComponent } from "../../shared/components/theme-switcher-btn/theme-switcher-btn.component";
 
 @Component({
 	selector: 'app-user-card',
 	standalone: true,
-	imports: [SocialBtnComponent],
+	imports: [SocialBtnComponent, ThemeSwitcherBtnComponent],
 	templateUrl: './user-card.component.html',
 	styleUrl: './user-card.component.scss',
 })
