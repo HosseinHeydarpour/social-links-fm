@@ -1,11 +1,36 @@
 <div class="max-w-96 dark:bg-grey-800 flex flex-col mx-auto my-auto items-center rounded-lg py-5">
-  <div class="profile-image max-w-24 object-cover overflow-hidden ">
-    <img class="rounded-full" src="images/avatar-jessica.jpeg" alt="Jessicea">
+  <div class="profile-image max-w-24  overflow-hidden ">
+    @if (userData.picture) {
+    <div class="relative w-full aspect-square">
+
+      @if (!img.complete) {
+      <div class="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+      }
+
+      <img #img (load)="0" [src]="userData.picture.large" [alt]="userData.name"
+        class="rounded-full w-full h-full object-cover transition-opacity duration-300"
+        [class.opacity-0]="!img.complete" [class.opacity-100]="img.complete">
+    </div>
+    } @else {
+    <img class="rounded-full w-full object-cover" src="images/avatar-jessica.jpeg" alt="Jessica">
+    }
   </div>
 
   <div class="user-name mt-8 flex flex-col justify-center">
+    @if(userData && userData.name ){
+    <h1 class="text-customWhite leading-tight text-2xl font-inter text-center ">
+      {{userData.name.first}}
+      {{userData.name.last}}</h1>
+    } @else {
     <h1 class="text-customWhite leading-tight text-2xl font-inter text-center ">Jessica Randall</h1>
+    }
+
+    @if(userData && userData.location) {
+    <p class="text-center text-customGreen font-bold mt-2">{{userData.location.city}}, {{userData.location.country}}</p>
+    } @else {
     <p class="text-center text-customGreen font-bold mt-2">London, United Kingdom</p>
+    }
+
 
     <p class="text-customWhite/75 mt-5">"Front-end developer and avid reader."</p>
   </div>
