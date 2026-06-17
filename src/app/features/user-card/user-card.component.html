@@ -4,61 +4,68 @@
     <app-theme-switcher-btn></app-theme-switcher-btn>
   </div>
 
-  <div class="profile-image max-w-24  overflow-hidden ">
-    @if (userData.picture) {
-    <div class="relative w-full aspect-square">
+  <!-- explicitly set w-24 and h-24 to lock the exact dimensions -->
+  <div class="relative w-24 h-24 mx-auto">
 
-      @if (!img.complete) {
-      <div class="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
-      }
-
-      <img #img (load)="0" [src]="userData.picture.large" [alt]="userData.name"
-        class="rounded-full w-full h-full object-cover transition-opacity duration-300"
-        [class.opacity-0]="!img.complete" [class.opacity-100]="img.complete">
-    </div>
-    } @else {
-    <img class="rounded-full w-full object-cover" src="images/avatar-jessica.jpeg" alt="Jessica">
+    @if (userData) {
+    <!-- Inner skeleton while the actual image downloads -->
+    @if (!img.complete) {
+    <div class="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
     }
+
+    <!-- Actual Image -->
+    <img #img (load)="0" [src]="userData.picture.large" [alt]="userData.name.first"
+      class="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-300"
+      [class.opacity-0]="!img.complete" [class.opacity-100]="img.complete">
+
+    } @else {
+    <!-- Main Image Skeleton (No User Data Yet) -->
+    <div class="absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+    }
+
   </div>
 
   <div class="user-name mt-8 flex flex-col justify-center">
     @if(userData && userData.name ){
-    <h1 class="dark:text-customWhite text-grey-900 leading-tight text-2xl font-inter text-center ">
-      {{userData.name.first}}
-      {{userData.name.last}}</h1>
+    <h1 class="dark:text-customWhite text-grey-900 leading-tight text-2xl font-inter text-center">
+      {{userData.name.first}} {{userData.name.last}}
+    </h1>
     } @else {
-    <h1 class="text-customWhite leading-tight text-2xl font-inter text-center ">Jessica Randall</h1>
+    <!-- Name Skeleton (h-8 perfectly matches text-2xl line height) -->
+    <div class="h-8 w-48 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse mx-auto"></div>
     }
 
     @if(userData && userData.location) {
-    <p class="text-center dark:text-customGreen text-green-700 font-bold mt-2">{{userData.location.city}},
-      {{userData.location.country}}
+    <p class="text-center dark:text-customGreen text-green-700 font-bold mt-2">
+      {{userData.location.city}}, {{userData.location.country}}
     </p>
     } @else {
-    <p class="text-center text-customGreen font-bold mt-2">London, United Kingdom</p>
+    <!-- Location Skeleton (mt-2 matches the p tag, h-6 matches standard text height) -->
+    <div class="h-6 w-40 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse mx-auto mt-2"></div>
     }
 
-
-    <p class="dark:text-customWhite/75    text-grey-900/75 mt-5">"Front-end developer and avid
-      reader."</p>
+    <!-- Static Quote -->
+    <p class="dark:text-customWhite/75 text-grey-900/75 mt-5 text-center">
+      "Front-end developer and avid reader."
+    </p>
   </div>
-
 
   <ul class="user-socials flex flex-col gap-4 mt-5 w-full px-8">
     <li class="w-full">
-      <app-social-btn btnContent="GitHub" btnLink="goo"></app-social-btn>
+      <app-social-btn btnContent="GitHub" btnLink="https://github.com/HosseinHeydarpour"></app-social-btn>
     </li>
     <li class="w-full">
-      <app-social-btn btnContent="Frontend Mentor" btnLink="goo"></app-social-btn>
+      <app-social-btn btnContent="Frontend Mentor"
+        btnLink="https://www.frontendmentor.io/profile/HosseinHeydarpour"></app-social-btn>
     </li>
     <li class="w-full">
-      <app-social-btn btnContent="Linkedin" btnLink="goo"></app-social-btn>
+      <app-social-btn btnContent="Linkedin" btnLink="https://ir.linkedin.com/in/hosseinheydarpour"></app-social-btn>
     </li>
     <li class="w-full">
-      <app-social-btn btnContent="Twitter" btnLink="goo"></app-social-btn>
+      <app-social-btn btnContent="Twitter" btnLink="https://x.com/"></app-social-btn>
     </li>
     <li class="w-full">
-      <app-social-btn btnContent="Instagram" btnLink="goo"></app-social-btn>
+      <app-social-btn btnContent="Instagram" btnLink="https://instagram.com/"></app-social-btn>
     </li>
   </ul>
 
