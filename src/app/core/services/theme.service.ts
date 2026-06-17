@@ -6,9 +6,11 @@ export type Theme = 'light' | 'dark';
 	providedIn: 'root',
 })
 export class ThemeService {
-	themeSignal = signal<Theme>(this.getInitialTheme());
+	themeSignal = signal<Theme>('light');
 
 	constructor() {
+		const initialTheme = this.getInitialTheme();
+		this.themeSignal.set(initialTheme);
 		effect(() => {
 			const currentTheme = this.themeSignal();
 			const root = window.document.documentElement;
