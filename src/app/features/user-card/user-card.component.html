@@ -31,7 +31,9 @@
     }
 
     @if(userData && userData.location) {
-    <p class="text-center text-customGreen font-bold mt-2">{{userData.location.city}}, {{userData.location.country}}</p>
+    <p class="text-center dark:text-customGreen text-green-700 font-bold mt-2">{{userData.location.city}},
+      {{userData.location.country}}
+    </p>
     } @else {
     <p class="text-center text-customGreen font-bold mt-2">London, United Kingdom</p>
     }
